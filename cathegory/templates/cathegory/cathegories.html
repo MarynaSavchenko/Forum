@@ -1,0 +1,31 @@
+{% extends 'cathegory/wrapper.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Cathegories</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Cathegory</th>
+        <th>Topics</th>
+        <th>Posts</th>
+        <th>Last Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for el in object_list %}
+        <tr>
+          <td>
+            <a href="/Cathegories/{{el.pk}}">{{ el.name }}</a>
+            <small class="text-muted d-block">{{ el.description }}</small>
+          </td>
+          <td class="align-middle">0</td>
+          <td class="align-middle">0</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
