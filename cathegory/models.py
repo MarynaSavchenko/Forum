@@ -17,8 +17,8 @@ class Topic(models.Model):
 
     subject = models.CharField(max_length=125)
     last_updated = models.DateTimeField(auto_now_add=True)
-    cathegory = models.ForeignKey(Cathegory)
-    starter = models.ForeignKey(User)
+    cathegory = models.ForeignKey(Cathegory, related_name='topics')
+    creater = models.ForeignKey(User, null=True, related_name='topics')
 
     def __str__(self):
         return self.subject
@@ -29,5 +29,5 @@ class Post(models.Model):
     topic = models.ForeignKey(Topic)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
-    creator = models.ForeignKey(User, related_name='creator')
+    creater = models.ForeignKey(User, null=True, related_name='posts')
     updater = models.ForeignKey(User, null=True, related_name='updater')

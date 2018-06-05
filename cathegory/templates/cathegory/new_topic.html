@@ -1,0 +1,17 @@
+{% extends 'cathegory/wrapper.html' %}
+
+{% block title %}Start a New Topic{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'cathegories' %}">Cathegories</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'cathegory_topics' cathegory.pk %}">{{ cathegory.name }}</a></li>
+  <li class="breadcrumb-item active">New topic</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+{% endblock %}

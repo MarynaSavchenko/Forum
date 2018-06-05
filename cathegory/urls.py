@@ -23,7 +23,7 @@ urlpatterns = [
 
     url(r'^$',  ListView.as_view(queryset = Cathegory.objects.all()[:20], template_name = "cathegory/cathegories.html"), name='cathegories'),
     url(r'^Cathegories/(?P<pk>\d+)/$', views.cathegory_topics, name='cathegory_topics'),
-    url(r'^Cathegories/(?P<pk>\d+)/new_topic$', views.cathegory_topics, name='new_topic'),
+    url(r'^Cathegories/(?P<pk>\d+)/new_topic$', views.new_topic, name='new_topic'),
 
 
 
