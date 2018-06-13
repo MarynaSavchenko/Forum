@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-  <table class="table">
-    <thead class="thead-inverse">
+  <table class="table table-striped">
+    <thead class="thead-dark">
       <tr>
         <th>Cathegory</th>
         <th>Topics</th>
@@ -36,6 +36,9 @@
               </a>
             </small>
             {% else %}
+            <small class="text-muted">
+              No posts.
+            </small>
             {% endif %}
             {% endwith %}
           </td>

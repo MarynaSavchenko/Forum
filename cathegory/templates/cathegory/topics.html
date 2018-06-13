@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'cathegories' %}">Cathegory</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'cathegories' %}">Cathegories</a></li>
   <li class="breadcrumb-item active">{{ cathegory.name }}</li>
 {% endblock %}
 
@@ -13,8 +13,8 @@
   <div class="mb-4">
     <a href="{% url 'new_topic' cathegory.pk %}" class="btn btn-primary">New topic</a>
   </div>
-  <table class="table">
-    <thead class="thead-inverse">
+  <table class="table table-striped" >
+    <thead class="thead-dark">
       <tr>
         <th>Topic</th>
         <th>Starter</th>
@@ -28,8 +28,8 @@
         <tr>
           <td><a href="{% url 'topic_posts' cathegory.pk topic.pk %}" class="breadcrumb-item">{{ topic.subject }}</a></td>
           <td>{{ topic.creater.username }}</td>
-          <td>0</td>
-          <td>0</td>
+          <td>{{ topic.count_posts }}</td>
+          <td>{{ topic.views }}</td>
           <td>{{ topic.last_updated }}</td>
         </tr>
       {% endfor %}

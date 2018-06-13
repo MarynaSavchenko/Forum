@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Cathegory(models.Model):
 
     name = models.CharField(max_length = 30, unique = True)
-    description = models.CharField(max_length = 100, null = True)
+    description = models.CharField(max_length = 100)
 
     def __str__(self):
         return self.name
@@ -24,19 +24,22 @@ class Topic(models.Model):
     subject = models.CharField(max_length = 125)
     last_updated = models.DateTimeField(auto_now_add = True)
     cathegory = models.ForeignKey(Cathegory, related_name = 'topics')
-    creater = models.ForeignKey(User, null=True, related_name = 'topics')
+    creater = models.ForeignKey(User, related_name = 'topics')
+    views = models.PositiveIntegerField(default = 0)
 
     def __str__(self):
         return self.subject
 
+    def count_posts(self):
+        return Post.objects.filter(topic = self).count()-1
+
+
 class Post(models.Model):
 
-    message = models.CharField(max_length = 200)
+    message = models.CharField(max_length = 4000)
     topic = models.ForeignKey(Topic, related_name = 'posts')
     created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(null = True)
-    creater = models.ForeignKey(User, null = True, related_name = 'posts')
-    updater = models.ForeignKey(User, null = True, related_name = 'updater')
+    creater = models.ForeignKey(User, related_name = 'posts')
 
     def __str__(self):
         return self.message
