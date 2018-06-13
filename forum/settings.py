@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'widget_tweaks',
     'cathegory',
     'django.contrib.admin',
@@ -81,6 +82,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+LOGOUT_REDIRECT_URL = 'cathegories'
+LOGIN_REDIRECT_URL = 'cathegories'
+
 
 
 # Password validation

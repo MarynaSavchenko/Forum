@@ -1,4 +1,4 @@
-{% extends 'cathegory/wrapper.html' %}
+{% extends 'wrapper.html' %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Cathegories</li>
@@ -18,12 +18,27 @@
       {% for el in object_list %}
         <tr>
           <td>
-            <a href="/Cathegories/{{el.pk}}">{{ el.name }}</a>
+            <a href="/{{el.pk}}">{{ el.name }}</a>
             <small class="text-muted d-block">{{ el.description }}</small>
           </td>
-          <td class="align-middle">0</td>
-          <td class="align-middle">0</td>
-          <td></td>
+          <td class="align-middle">
+            {{ el.topics.count }}
+          </td>
+          <td class="align-middle">
+            {{ el.count_posts }}
+          </td>
+          <td class="align-middle">
+            {% with post=el.last_post %}
+            {% if post %}
+            <small class="text-muted d-block">
+              <a href="{% url 'topic_posts' el.pk post.topic.pk %}">
+                By {{ post.creater }} at {{ post.created_at}}
+              </a>
+            </small>
+            {% else %}
+            {% endif %}
+            {% endwith %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>
